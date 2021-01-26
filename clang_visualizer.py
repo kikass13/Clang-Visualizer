@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 import argparse
 import urllib.request
@@ -94,7 +96,7 @@ def main():
                         details += 1
 
     args.file.close()
-    f = open("clang.html", "w")
+    f = open(args.output, "w")
     
     # Functions for writing to the clang.html file.
     writeHeader(f)
@@ -137,7 +139,9 @@ def write_checks_file():
 def parse_command_line_options():
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--button', action='store_true')
+    parser.add_argument('-o', '--output', default="clang-tidy.html")
     parser.add_argument('file', type=argparse.FileType('r'))
+
 
     try:
         args = parser.parse_args()
